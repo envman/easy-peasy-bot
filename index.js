@@ -82,12 +82,32 @@ controller.on('rtm_close', function (bot) {
 // BEGIN EDITING HERE!
 
 controller.on('bot_channel_join', function (bot, message) {
-    bot.reply(message, "I'm here!")
+    bot.reply(message, "Hello Chaps!")
 });
+
+controller.hears('lunch', ['direct_mention', 'mention', 'direct_message'], (bot, message) => {
+  bot.reply(message, tm_speak('I recommend lamb, or miller and carter'))
+})
+
+controller.hears('miller and carter', ['direct_mention', 'mention', 'direct_message'], (bot, message) => {
+  bot.reply(message, tm_speak('YUMMY!!'))
+})
+
+controller.hears('ploom', ['direct_mention', 'mention', 'direct_message'], (bot, message) => {
+  bot.reply(message, tm_speak("I won't go there and you can't make me!!"))
+})
+
+controller.hears(['hello', 'hi', 'greetings'], ['direct_mention', 'mention', 'direct_message'], function(bot,message) {
+     bot.reply(message, tm_speak("I'm sorry, I don't currently have any functionality please add some to the master branch"));
+ });
 
 controller.hears('hello', 'direct_message', function (bot, message) {
     bot.reply(message, 'Hello!');
 });
+
+function tm_speak(text) {
+  return text.split('a').join('ar')
+}
 
 
 /**
